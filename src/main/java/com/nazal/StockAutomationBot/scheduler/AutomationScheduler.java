@@ -22,7 +22,7 @@ public class AutomationScheduler {
     MysqlLoggerService mysqlLoggerService;
 
     @Scheduled(cron = "0 */5 9-15 ? * MON-FRI", zone = "Asia/Kolkata")
-    //@Scheduled(cron = "* */5 * * * * ")
+    //@Scheduled(fixedRate = 60000)
     public void runAllStrategies() {
         for (TradingStrategy strategy : strategies) {
             System.out.println("Running strategy for: " + strategy.getSymbol());
