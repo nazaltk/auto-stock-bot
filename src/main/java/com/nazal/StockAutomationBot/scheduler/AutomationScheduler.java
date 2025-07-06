@@ -2,6 +2,7 @@ package com.nazal.StockAutomationBot.scheduler;
 
 import com.nazal.StockAutomationBot.strategy.TradingStrategy;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class AutomationScheduler {
 
     private final List<TradingStrategy> strategies;
@@ -20,5 +22,10 @@ public class AutomationScheduler {
             System.out.println("Running strategy for: " + strategy.getSymbol());
             strategy.evaluate();
         }
+    }
+
+    @Scheduled(fixedRate = 60000)
+    public void pingToKeepUp() {
+        log.info("yes, App is Up");
     }
 }
