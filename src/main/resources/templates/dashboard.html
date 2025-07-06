@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Holdings</title>
+    <meta charset="UTF-8">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #222;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<h2 style="text-align: center;">Current Holdings</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Symbol</th>
+        <th>Buy Price</th>
+        <th>Quantity</th>
+        <th>Buy Time</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="holding : ${holdings}">
+        <td th:text="${holding.symbol}">TCS</td>
+        <td th:text="${holding.buyPrice}">3500</td>
+        <td th:text="${holding.quantity}">1</td>
+        <td th:text="${#temporals.format(holding.buyTime, 'yyyy-MM-dd HH:mm')}">2025-07-05</td>
+    </tr>
+    </tbody>
+</table>
+
+<h2 style="text-align: center;">Stock Bot Trade Logs</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Symbol</th>
+        <th>Action</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Time</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="log : ${logs}">
+        <td th:text="${log.symbol}">TCS</td>
+        <td th:text="${log.action}">BUY</td>
+        <td th:text="${log.price}">3500.00</td>
+        <td th:text="${log.qty}">1</td>
+        <td th:text="${log.log_time}">2025-07-05</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
